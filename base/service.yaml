@@ -5,11 +5,13 @@ metadata:
   labels:
     app: servicename
   name: servicename-service
+  namespace: servicename
 spec:
+  type: NodePort  # Allows external access
   ports:
     - name: http
       port: 80
-      protocol: TCP
       targetPort: 8700
+      nodePort: 30001 # Access via http://<Any_Node_IP>:30001
   selector:
     app: servicename

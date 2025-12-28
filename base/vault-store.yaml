@@ -1,0 +1,17 @@
+apiVersion: external-secrets.io/v1
+kind: ClusterSecretStore
+metadata:
+  name: vault-backend
+spec:
+  provider:
+    vault:
+      server: "http://192.168.122.182:8200" # Use the IP from your cluster_addr
+      path: "kv"
+      version: "v2"
+      auth:
+        kubernetes:
+          mountPath: "kubernetes"
+          role: "eso-role"
+          serviceAccountRef:
+            name: external-secrets
+            namespace: external-secrets
